@@ -12,8 +12,9 @@ void setup() {
     pinMode(motor2Pin, OUTPUT);
     pinMode(pwmPin, OUTPUT);
  
-    // set PWM enable pin high so that motor can turn on:
-    digitalWrite(pwmPin, HIGH);
+    // set PWM enable pin high so that motor can turn on.
+    // To change the motor speed, change the number in the line of code below
+    analogWrite(pwmPin, 255);   // 255 is full speed, 0 is off
   }
 
 void loop() {
