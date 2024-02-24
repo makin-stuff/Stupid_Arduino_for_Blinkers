@@ -23,6 +23,9 @@
 */
 
 const int switchPin = 2;  // pin connected to push button
+bool buttonState;
+bool lastButtonState = LOW;
+bool ledState = LOW;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -31,14 +34,21 @@ void setup() {
   pinMode(switchPin, INPUT);
 
   Serial.begin(9600);
+  digitalWrite(LED_BUILTIN, ledState);
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  if (digitalRead(switchPin) == HIGH) {
-    Serial.println("Button pressed");
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  } else {
-    digitalWrite(LED_BUILTIN, LOW);   // turn the LED off
-  }
+  int reading = digitalRead(switchPin);
+  
+  if (reading != lastButtonState) {
+    buttonState = reading;
+
+    if (buttonState == HIGH) {
+      Serial.println("button pressed!");
+      ledState != ledState; // flip the LED
+    }
+  } 
+  
+  digitalWrite(LED_BUILTIN, ledState);   // turn the LED off
 }
